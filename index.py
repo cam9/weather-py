@@ -9,7 +9,9 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "Add a location to the url to see some weather!"
+    url = "http://api.db-ip.com/addrinfo?addr={}&api_key=5d9dd65d7e5387f647dfbec122537e3e35ddecae".format(request.remote_addr)
+    addr = requests.get(url)
+    return str(addr)
 
 @app.route("/<city>")
 def weather(city):
