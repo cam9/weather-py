@@ -11,7 +11,7 @@ app = Flask(__name__)
 def index():
     url = "http://api.db-ip.com/addrinfo?addr={}&api_key=5d9dd65d7e5387f647dfbec122537e3e35ddecae".format(request.remote_addr)
     addr = requests.get(url)
-    return str(addr)
+    return str(addr.json())
 
 @app.route("/<city>")
 def weather(city):
