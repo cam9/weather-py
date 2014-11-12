@@ -9,12 +9,10 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    ar = request.access_route[0]
-    ra = request.remote_addr
-    en = request.environ["REMOTE_ADDR"]
-    #url = "http://api.db-ip.com/addrinfo?addr={}&api_key=5d9dd65d7e5387f647dfbec122537e3e35ddecae".format(ip)
-    #addr = requests.get(url)
-    return "ar={}, ra={}, en={}".format(ar,ra,en)
+    ip = request.access_route[0]
+    url = "http://api.db-ip.com/addrinfo?addr={}&api_key=5d9dd65d7e5387f647dfbec122537e3e35ddecae".format(ip)
+    addr = requests.get(url)
+    return "You are in"+str(addr.json)
 
 @app.route("/<city>")
 def weather(city):
