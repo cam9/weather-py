@@ -5,4 +5,4 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-	return "Weather will be here"
+	return "Elliot is smelly"
