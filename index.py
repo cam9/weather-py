@@ -13,7 +13,7 @@ def index():
     url = "http://api.db-ip.com/addrinfo?addr={}&api_key=5d9dd65d7e5387f647dfbec122537e3e35ddecae".format(ip)
     addr = requests.get(url).json()
     
-    url = 'http://api.openweathermap.org/data/2.5/weather?q={},{},{}'.format(addr["city"], addr["stateprov"], addr["country"]))
+    url = 'http://api.openweathermap.org/data/2.5/weather?q={},{},{}'.format(addr["city"], addr["stateprov"], addr["country"])
     response = requests.get(url)
     temp = (response.json()["main"]["temp"] - 273.15)* 1.8000 + 32.00
     temp =  str(temp)
