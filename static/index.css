@@ -1,0 +1,23 @@
+body{
+	background: black;
+}
+
+.hidden{
+	display: none;
+}
+
+#temp{
+	color: white;
+	font-size: 45vmin;
+	font-family: 'Advent Pro', sans-serif;
+	font-weight: 400;
+	margin: 0px;
+}
+
+.centered{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+}
+
