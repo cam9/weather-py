@@ -16,8 +16,9 @@ def index():
     url = 'http://api.openweathermap.org/data/2.5/weather?q={},{},{}'.format(addr["city"], addr["stateprov"], addr["country"])
     response = requests.get(url)
     temp = (response.json()["main"]["temp"] - 273.15)* 1.8000 + 32.00
-    temp =  str(temp)
+    temp =  str(int(temp))
     return render_template("index.html",city=addr["city"],temp=temp)
+    #return render_template("index.html",city="City",temp="55")
 
 @app.route("/<city>")
 def weather(city):
