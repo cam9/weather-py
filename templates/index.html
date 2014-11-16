@@ -25,12 +25,12 @@
 				pointHighlightFill: "#fff",
 				pointHighlightStroke: "rgba(220,220,220,1)",
 				data: ['{{ forecast_list[0]["temp"]["day"] }}',
-				'{{forecast_list[1]["temp"]["day"]}}',
-				'{{forecast_list[2]["temp"]["day"]}}',
-				'{{forecast_list[3]["temp"]["day"]}}',
-				'{{forecast_list[4]["temp"]["day"]}}', 
-				'{{forecast_list[5]["temp"]["day"]}}',
-				'{{forecast_list[6]["temp"]["day"]}}',]
+				'{{forecast_list[1]}}',
+				'{{forecast_list[2]}}',
+				'{{forecast_list[3]}}',
+				'{{forecast_list[4]}}', 
+				'{{forecast_list[5]}}',
+				'{{forecast_list[6]}}',]
 			}]
 		};
 	var myLineChart = new Chart(ctx).Line(data);

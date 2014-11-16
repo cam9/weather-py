@@ -7,6 +7,9 @@ import requests
 
 app = Flask(__name__)
 
+def kelvin_to_far(kelvin):
+	return (kelvin - 273.15)* 1.8000 + 32.00
+
 def forecast(city, state, country, days):
 	url = "http://api.openweathermap.org/data/2.5/forecast/daily?mode=json&cnt={}&q={},{},{}".format(days, city, state, country)
 	response = requests.get(url)
@@ -16,7 +19,7 @@ def forecast(city, state, country, days):
 def today_temp(city, state, country):
 	url = 'http://api.openweathermap.org/data/2.5/weather?q={},{},{}'.format(city, state, country)
 	response = requests.get(url)
-	temp = (response.json()["main"]["temp"] - 273.15)* 1.8000 + 32.00
+	temp = kelvin_to_far(response.json()["main"]["temp"])
 	temp =  str(int(temp))
 	return temp
     
@@ -31,6 +34,10 @@ def index():
 	addr = coarse_addr(ip)
 	temp = today_temp(addr["city"], addr["stateprov"], addr["country"])
 	forecast_list = forecast(addr["city"], addr["stateprov"], addr["country"], 7)
+	fahrenheits = list()
+	#creates a list of fahrenheits
+	for i in range len(forecast_list):
+		fahrenheits[i] = kelvin_to_far(forecast_list[i]["temp"]["daily"])
 	return render_template("index.html",city=addr["city"],temp=temp, forecast_list=forecast_list)
 
 @app.route("/<city>")
