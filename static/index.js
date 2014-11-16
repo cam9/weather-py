@@ -2,6 +2,7 @@ $(window).load(function () {
     $("#temp").fadeIn(3000);
 });
 
+
 function set_week_forecast_chart(tempData){
 	var ctx = document.getElementById("weekForecast").getContext("2d");
 	var d = new Date();
