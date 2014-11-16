@@ -10,7 +10,6 @@
 	<p id="temp" class="hidden centered">{{temp}}</p>
 	<canvas id="myChart" width="400" height="400"></canvas>
 	<script>
-	alert( " {{ temp }} " );
 	var ctx = document.getElementById("myChart").getContext("2d");
 
 	var data = {
@@ -24,7 +23,8 @@
 				pointStrokeColor: "#fff",
 				pointHighlightFill: "#fff",
 				pointHighlightStroke: "rgba(220,220,220,1)",
-				data: ['{{ forecast_list[0]["temp"]["day"] }}',
+				data: [
+				'{{ forecast_list[0] }}',
 				'{{forecast_list[1]}}',
 				'{{forecast_list[2]}}',
 				'{{forecast_list[3]}}',

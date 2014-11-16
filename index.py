@@ -34,11 +34,11 @@ def index():
 	addr = coarse_addr(ip)
 	temp = today_temp(addr["city"], addr["stateprov"], addr["country"])
 	forecast_list = forecast(addr["city"], addr["stateprov"], addr["country"], 7)
-	fahrenheits = list()
+	fahrenheits = list(forecast_list)
 	#creates a list of fahrenheits
-	for i in range len(forecast_list):
-		fahrenheits[i] = kelvin_to_far(forecast_list[i]["temp"]["daily"])
-	return render_template("index.html",city=addr["city"],temp=temp, forecast_list=forecast_list)
+	for i in range(len(forecast_list)):
+		fahrenheits[i] = kelvin_to_far(forecast_list[i]["temp"]["day"])
+	return render_template("index.html",city=addr["city"],temp=temp, forecast_list=fahrenheits)
 
 @app.route("/<city>")
 def weather(city):
