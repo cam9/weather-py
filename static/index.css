@@ -1,17 +1,31 @@
 body{
 	background: black;
+	margin-bottom:0px;
 }
 
 .hidden{
 	display: none;
 }
 
-#temp{
+.white_text{
 	color: white;
-	font-size: 45vmin;
 	font-family: 'Exo', sans-serrif;
 	font-weight: 200;
+}
+
+#city{
+	font-size:20vmin;
+	margin:0px;
+	position: absolute;
+	top: 100%;
+	left: 0%;
+	transform: translate(0%, -100%);
+	-webkit-transform: translate(0%, -100%);
+}
+
+#temp{
 	margin: 0px;
+	font-size: 45vmin;
 }
 
 .centered{
@@ -20,5 +34,20 @@ body{
 	left: 50%;
 	transform: translate(-50%, -50%);
 	-webkit-transform: translate(-50%, -50%);
+}
+
+#weekForecast{
+	position: absolute;
+	top: 0;
+	left: 0;
+
+}
+
+#hourForecast{
+	position: absolute;
+	top: 0;
+	left: 100%;
+	transform: translate(-100%, 0%);
+	-webkit-transform: translate(-100%, 0%);
 }
 
