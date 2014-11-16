@@ -55,7 +55,6 @@ def index():
 		hour_forecast_labels[i] = hour_forecast_list[i]["dt_txt"]
 	
 	temp = int(week_fahrenheits[0])
-	print hour_forecast_labels
 	return render_template("index.html",
 		city=addr["city"],
 		temp=temp, 

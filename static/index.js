@@ -4,7 +4,6 @@ $(window).load(function () {
 
 function set_week_forecast_chart(tempData){
 	var ctx = document.getElementById("weekForecast").getContext("2d");
-	
 	var d = new Date();
 	var weekday = new Array(7);
 		weekday[0] = "Sunday";
