@@ -56,7 +56,7 @@ def index():
 	
 	temp = int(week_fahrenheits[0])
 	return render_template("index.html",
-		city=addr["city"],
+		city=addr,
 		temp=temp, 
 		week_forecast_list=week_fahrenheits,
 		hour_forecast_temps=hour_forecast_temps,

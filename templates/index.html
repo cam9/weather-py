@@ -7,9 +7,10 @@
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
 </head>
 <body>
-	<p id="temp" class="hidden centered">{{temp}}</p>
+	<p id="temp" class="white_text hidden centered">{{temp}}</p>
 	<canvas id="weekForecast" width="400" height="400"></canvas>
 	<canvas id="hourForecast" width="400" height="400"></canvas>
+	<p id="city" class="white_text">{{city["city"]}},{{city["stateprov"][0:2]|upper}}</p>
 	
 	<script>
 		var weekForecastList = JSON.parse('{{week_forecast_list}}');
