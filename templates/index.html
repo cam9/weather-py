@@ -9,4 +9,30 @@
 <body>
 	<p id="temp" class="hidden centered">{{temp}}</p>
 	<canvas id="myChart" width="400" height="400"></canvas>
+	<script>
+	alert( " {{ temp }} " );
+	var ctx = document.getElementById("myChart").getContext("2d");
+
+	var data = {
+		labels: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+		datasets: [
+			{
+				label: "My First dataset",
+				fillColor: "rgba(220,220,220,0.2)",
+				strokeColor: "rgba(220,220,220,1)",
+				pointColor: "rgba(220,220,220,1)",
+				pointStrokeColor: "#fff",
+				pointHighlightFill: "#fff",
+				pointHighlightStroke: "rgba(220,220,220,1)",
+				data: ['{{ forecast_list[0]["temp"]["day"] }}',
+				'{{forecast_list[1]["temp"]["day"]}}',
+				'{{forecast_list[2]["temp"]["day"]}}',
+				'{{forecast_list[3]["temp"]["day"]}}',
+				'{{forecast_list[4]["temp"]["day"]}}', 
+				'{{forecast_list[5]["temp"]["day"]}}',
+				'{{forecast_list[6]["temp"]["day"]}}',]
+			}]
+		};
+	var myLineChart = new Chart(ctx).Line(data);
+	</script>
 </body>
