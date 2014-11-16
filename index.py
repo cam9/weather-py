@@ -4,14 +4,21 @@ from flask import render_template
 from flask import jsonify
 from flask import request
 import requests
+import json
 
 app = Flask(__name__)
 
 def kelvin_to_far(kelvin):
 	return (kelvin - 273.15)* 1.8000 + 32.00
 
-def forecast(city, state, country, days):
+def day_forecast(city, state, country, days):
 	url = "http://api.openweathermap.org/data/2.5/forecast/daily?mode=json&cnt={}&q={},{},{}".format(days, city, state, country)
+	response = requests.get(url)
+	forecast_list = response.json()["list"]
+	return forecast_list
+	
+def hour_forecast(city, state, country):
+	url = "http://api.openweathermap.org/data/2.5/forecast?mode=json&q={},{},{}".format(city, state, country)
 	response = requests.get(url)
 	forecast_list = response.json()["list"]
 	return forecast_list
@@ -32,13 +39,29 @@ def coarse_addr(ip):
 def index():
 	ip = request.access_route[0]
 	addr = coarse_addr(ip)
-	temp = today_temp(addr["city"], addr["stateprov"], addr["country"])
-	forecast_list = forecast(addr["city"], addr["stateprov"], addr["country"], 7)
-	fahrenheits = list(forecast_list)
+	
+	week_forecast_list = day_forecast(addr["city"], addr["stateprov"], addr["country"], 7)
+	week_fahrenheits = list(week_forecast_list)
 	#creates a list of fahrenheits
-	for i in range(len(forecast_list)):
-		fahrenheits[i] = kelvin_to_far(forecast_list[i]["temp"]["day"])
-	return render_template("index.html",city=addr["city"],temp=temp, forecast_list=fahrenheits)
+	for i in range(len(week_forecast_list)):
+		week_fahrenheits[i] = int(kelvin_to_far(week_forecast_list[i]["temp"]["day"]))
+	
+	hour_forecast_list = hour_forecast(addr["city"], addr["stateprov"], addr["country"])
+	hour_forecast_temps = [0]*8
+	hour_forecast_labels = [""]*8
+	#plucks daily temp, and date-time for the next 24 hours
+	for i in range(8):
+		hour_forecast_temps[i] = int(kelvin_to_far(hour_forecast_list[i]["main"]["temp"]))
+		hour_forecast_labels[i] = hour_forecast_list[i]["dt_txt"]
+	
+	temp = int(week_fahrenheits[0])
+	print hour_forecast_labels
+	return render_template("index.html",
+		city=addr["city"],
+		temp=temp, 
+		week_forecast_list=week_fahrenheits,
+		hour_forecast_temps=hour_forecast_temps,
+		hour_forecast_labels=json.dumps(hour_forecast_labels))
 
 @app.route("/<city>")
 def weather(city):

@@ -2,7 +2,7 @@ $(window).load(function () {
     $("#temp").fadeIn(3000);
 });
 
-function week_forecast_chart(tempData){
+function set_week_forecast_chart(tempData){
 	var ctx = document.getElementById("weekForecast").getContext("2d");
 	
 	var d = new Date();
@@ -39,4 +39,23 @@ function week_forecast_chart(tempData){
 			}]
 		};
 	var myLineChart = new Chart(ctx).Line(data);
+}
+
+function set_hour_forecast_chart(tempData, labelData){
+	var hourCtx = document.getElementById("hourForecast").getContext("2d");
+	var hourData = {
+		labels: labelData,
+		datasets: [
+			{
+				label: "My First dataset",
+				fillColor: "rgba(220,220,220,0.2)",
+				strokeColor: "rgba(220,220,220,1)",
+				pointColor: "rgba(220,220,220,1)",
+				pointStrokeColor: "#fff",
+				pointHighlightFill: "#fff",
+				pointHighlightStroke: "rgba(220,220,220,1)",
+				data: tempData
+			}]
+		};
+	var myHourChart = new Chart(hourCtx).Line(hourData);
 }

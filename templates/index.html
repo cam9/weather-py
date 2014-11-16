@@ -9,17 +9,17 @@
 <body>
 	<p id="temp" class="hidden centered">{{temp}}</p>
 	<canvas id="weekForecast" width="400" height="400"></canvas>
+	<canvas id="hourForecast" width="400" height="400"></canvas>
 	
 	<script>
-		var tempData = [
-				'{{forecast_list[0]}}',
-				'{{forecast_list[1]}}',
-				'{{forecast_list[2]}}',
-				'{{forecast_list[3]}}',
-				'{{forecast_list[4]}}', 
-				'{{forecast_list[5]}}',
-				'{{forecast_list[6]}}',
-				];
-		week_forecast_chart(tempData);
+		var weekForecastList = JSON.parse('{{week_forecast_list}}');
+		set_week_forecast_chart(weekForecastList);
 	</script>
+	
+	<script>
+		var hourForecastTemps = JSON.parse('{{hour_forecast_temps}}');
+		var hourForecastLabels = JSON.parse('{{hour_forecast_labels|safe}}');
+		set_hour_forecast_chart(hourForecastTemps, hourForecastLabels);
+	</script>
+	
 </body>
