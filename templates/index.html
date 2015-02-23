@@ -20,7 +20,7 @@
 	<p id="temp" class="white_text hidden centered">{{temp}}</p>
 	<canvas id="weekForecast" width="400" height="400"></canvas>
 	<canvas id="hourForecast" width="400" height="400"></canvas>
-	<p id="city" class="white_text">{{city["city"]}},{{city["stateprov"][0:2]|upper}}</p>
+	<span id="city" class="white_text">{{city["city"]}},{{city["stateprov"]}}</span>
 	
 	<script>
 		var weekForecastList = JSON.parse('{{week_forecast_list}}');
